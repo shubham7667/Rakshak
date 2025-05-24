@@ -1,9 +1,21 @@
 import React from 'react'
 import security from '../assets/security.jpg'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import { useEffect } from 'react'
 
 const Services = () => {
+     useEffect(()=>{
+                AOS.init(
+                    {
+                        duration:2000,
+                        once:false,
+                        
+                    }
+                )
+            },[])
     return (
-        <div className="relative w-full h-[700px]">
+        <div  className="relative w-full h-auto">
             {/* Blurred Background Layer */}
             <div
                 className="absolute inset-0 top-0 left-0 w-full h-full bg-cover bg-center blur-lg"
@@ -11,9 +23,9 @@ const Services = () => {
             ></div>
 
             {/* Card Content Layer */}
-            <div className="cardContainer flex flex-col items-center gap-10  z-10 relative h-full  overflow-y-auto  w-full p-20">
+            <div data-aos='slide-up' className="cardContainer flex flex-col items-center gap-10  z-10 relative h-full  overflow-y-auto  w-full p-20">
 
-                <div className=" bg-black h-[500px] w-[600px] flex flex-col gap-5 rounded-lg text-white p-5 z-10">
+                <div data-aos='flip-up' className=" bg-black h-[500px] w-[600px] flex flex-col gap-5 rounded-lg text-white p-5 z-10">
                      <span className="text-zinc-400 p-2">
                         Security Features
                     </span>
@@ -29,7 +41,7 @@ const Services = () => {
                     </button>
                 </div>
 
-                <div className=" bg-black h-[500px] w-[600px] flex flex-col gap-5 rounded-lg text-white p-5 z-10">
+                <div data-aos='flip-up' className=" bg-black h-[500px] w-[600px] flex flex-col gap-5 rounded-lg text-white p-5 z-10">
                      <span className="text-zinc-400 p-2">
                        Crime Reporting
                     </span>
@@ -45,7 +57,7 @@ const Services = () => {
                     </button>
                 </div>
 
-                <div className=" bg-black h-[500px] w-[600px] flex flex-col gap-5 rounded-lg text-white p-5 z-10">
+                <div data-aos='flip-up' className=" bg-black h-[500px] w-[600px] flex flex-col gap-5 rounded-lg text-white p-5 z-10">
                      <span className="text-zinc-400 p-2">
                       Emergency Assistance
                     </span>
@@ -63,7 +75,7 @@ const Services = () => {
 
 
                 
-                <div className=" bg-black h-[500px] w-[600px] flex flex-col gap-5 rounded-lg text-white p-5 z-10">
+                <div data-aos='flip-up' className=" bg-black h-[500px] w-[600px] flex flex-col gap-5 rounded-lg text-white p-5 z-10">
                      <span className="text-zinc-400 p-2">
                      Community Support
                     </span>
@@ -73,7 +85,6 @@ const Services = () => {
                     </p>
                     <span className="text-zinc-400 p-2">
       Connect with others and share safety tips. Together, we can create a safer environment for everyone.
-
 
                     </span>
                     <button className="flex justify-center w-[150px] items-center gap-5 bg-white text-black p-2 rounded-lg hover:bg-gray-200 hover:scale-105 duration-400 mt-20">

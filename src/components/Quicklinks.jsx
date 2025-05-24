@@ -3,12 +3,25 @@ import { LuFileText } from "react-icons/lu";
 import { BsCamera2 } from "react-icons/bs";
 import { LiaClipboardListSolid } from "react-icons/lia";
 import { TbShieldCheck } from "react-icons/tb";
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import { useEffect } from 'react'
 
 const Quicklinks = () => {
+     useEffect(()=>{
+              AOS.init(
+                  {
+                      duration:2000,
+                      once:false,
+                      
+                  }
+              )
+          },[])
+
   return (
-    <div className='flex gap-10 p-30 justify-center items-center  bg-white'>
+    <div  className='flex gap-10 p-30 justify-center items-center  bg-white'>
         
-        <div className="fileReport h-[250px] w-[300px] bg-gray-100 p-10 flex flex-col  gap-3 justify-center  items-center group hover:bg-gray-200  shadow-2xl rounded-md duration-300">
+        <div data-aos='slide-up' className="fileReport h-[250px] w-[300px] bg-gray-100 p-10 flex flex-col  gap-3 justify-center  items-center group hover:bg-gray-200  shadow-2xl rounded-md duration-300">
          
         <p ><LuFileText size={50} className="text-black group-hover:scale-105 group-hover:text-lime-700 transition-colors  duration-300" /></p>
             <h3 className='text-black font-bold text-lg group-hover:text-lime-700 group-hover:scale-105 duration-300'>   File a Report</h3>
@@ -21,7 +34,7 @@ const Quicklinks = () => {
         </div>
 
 
-          <div className="fileReport h-[250px] w-[300px] bg-gray-100 p-10 flex flex-col  gap-3 justify-center  items-center group hover:bg-gray-200 shadow-2xl  rounded-md duration-300 ">
+          <div  data-aos='slide-up' className="fileReport h-[250px] w-[300px] bg-gray-100 p-10 flex flex-col  gap-3 justify-center  items-center group hover:bg-gray-200 shadow-2xl  rounded-md duration-300 ">
          
          <p>< BsCamera2  size="50px"   className=' text-black group-hover:scale-105 group-hover:text-lime-700 transition-colors duration-300'/> </p>
             <h3 className='text-black font-bold text-lg group-hover:scale-105 group-hover:text-lime-700 duration-300 '>  Document a Crime</h3>
@@ -32,7 +45,7 @@ const Quicklinks = () => {
                     </button>
         </div>
 
-              <div className="fileReport h-[250px] w-[300px] bg-gray-100 p-10 flex flex-col  gap-3 justify-center  items-center group hover:bg-gray-200 shadow-2xl  rounded-md duration-300">
+              <div  data-aos='slide-up' className="fileReport h-[250px] w-[300px] bg-gray-100 p-10 flex flex-col  gap-3 justify-center  items-center group hover:bg-gray-200 shadow-2xl  rounded-md duration-300">
          
          <p>< LiaClipboardListSolid  size="50px"   className=' text-black group-hover:scale-105 group-hover:text-lime-700 transition-colors duration-300'/> </p>
             <h3 className='text-black font-bold text-lg group-hover:scale-105 group-hover:text-lime-700 duration-300'> Contact Authorities</h3>
@@ -46,7 +59,7 @@ const Quicklinks = () => {
         </div>
       
 
-            <div className="fileReport h-[250px] w-[300px] bg-gray-100 p-10 flex flex-col  gap-3 justify-center  items-center group hover:bg-gray-200  shadow-2xl  rounded-md duration-300 transition-all">
+            <div  data-aos='slide-up' className="fileReport h-[250px] w-[300px] bg-gray-100 p-10 flex flex-col  gap-3 justify-center  items-center group hover:bg-gray-200  shadow-2xl  rounded-md duration-300 transition-all">
          
          <p>< TbShieldCheck  size="50px"   className=' text-black group-hover:scale-105 group-hover:text-lime-700 transition-colors duration-300'/> </p>
             <h3 className='text-black font-bold text-lg group-hover:scale-105 group-hover:text-lime-700 duration-300'>Safety Advice</h3>

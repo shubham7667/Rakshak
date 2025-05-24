@@ -1,10 +1,23 @@
 import React from 'react';
 import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import { useEffect } from 'react'
 
 const Footer = () => {
+     useEffect(()=>{
+                AOS.init(
+                    {
+                        duration:2000,
+                        once:false,
+                        
+                    }
+                )
+            },[])
+
   return (
     <footer className="bg-gray-900 text-white py-10 px-6">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
+      <div data-aos='fade-up' className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
 
         {/* About */}
         <div>

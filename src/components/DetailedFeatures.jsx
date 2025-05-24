@@ -5,16 +5,26 @@ import contact from '../assets/contact.webp'
 import safety from '../assets/safety.webp'
 import informed from '../assets/informed.avif'
 import {Link} from 'react-router-dom'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import { useEffect } from 'react'
 const DetailedFeatures = () => {
+        useEffect(()=>{
+            AOS.init(
+                {
+                    duration:2000,
+                    once:false,
+                    
+                }
+            )
+        },[])
     return (
         <div className='flex w-full'>
             {/* create three div row wise  div 1. 4 images div2. one big centered image div 3. important link sections */}
 
-            <div className="featuresSection grid grid-cols-2 lg:h-[700px] w-2/3 bg-white p-5 ">
+            <div data-aos='zoom-in' className="featuresSection grid grid-cols-2 lg:h-[700px] w-2/3 bg-white p-5 ">
 
-                <div className='group'>
-
-
+                <div >
                     <img src={incident} alt="" className=' h-50 w-50 rounded-lg transition-all duration-300 hover:opacity-60 ' />
                     <h3 className='font-semibold  text-2xl'>Record an Incident</h3>
                     <p>Capture details of any suspicious <br /> activity quickly and securely.</p>
@@ -32,7 +42,7 @@ const DetailedFeatures = () => {
                 <div>
                     <img src={contact} alt="" className=' h-50 w-50 rounded-lg transition-all duration-300 hover:opacity-70' />
                     <h3 className='font-semibold  text-2xl'>Contact Authorities</h3>
-                    <p>Reach out to local law enforcement with just a click</p>
+                    <p>Reach out to local law enforcement <br /> with just a click</p>
                 </div>
 
 
@@ -46,7 +56,7 @@ const DetailedFeatures = () => {
             </div>
 
 
-            <div className="informed flex flex-wrap lg:h-[700px] w-2/3  bg-white ">
+            <div  data-aos='zoom-in' className="informed flex flex-wrap lg:h-[700px] w-2/3  bg-white ">
 
                 <img src={informed} alt="" className='h-100 w-full p-5 rounded-lg trainsition-full duration-300 hover:opacity-70 ' />
 
@@ -58,7 +68,7 @@ const DetailedFeatures = () => {
             </div>
 
 
-            <div className="importantBlog flex flex-wrap lg:h-auto w-1/3 bg-white">
+            <div  data-aos='zoom-in' className="importantBlog flex flex-wrap lg:h-auto w-1/3 bg-white">
             
             <div className='p-5 flex flex-col gap-5'>
                  <Link to='/emergency'  className='font-bold text-xl  hover:text-blue-500'>  Emergency Contacts
