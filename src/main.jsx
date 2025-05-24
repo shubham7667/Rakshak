@@ -11,6 +11,8 @@ import Services from './components/Services';
 import Quicklinks from './components/Quicklinks';
 import DetailedFeatures from './components/DetailedFeatures';
 import Faq from './components/Faq';
+import RegisterFir from './components/RegisterFir';
+import Footer from './components/footer';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -24,6 +26,8 @@ root.render(
 <DetailedFeatures />
 </BrowserRouter>
 <Faq /> 
+<RegisterFir />
+<Footer />  
 </>
 
 );
