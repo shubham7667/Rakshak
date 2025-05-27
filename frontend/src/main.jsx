@@ -16,6 +16,7 @@ import Onlinefir from './components/forms/Onlinefir.jsx' // <-- Import your Onli
 import CrimeRecord from './components/featurePages/crimeRecord.jsx';
 import Emergencycall from './components/featurePages/Emergencycall.jsx';
 import Registeration from './components/forms/Registeration.jsx';
+import Login from './components/forms/login.jsx'
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -39,6 +40,7 @@ root.render(
       <Route path  ="/crimerecord" element={<CrimeRecord />} />
       <Route path  ="/emergencycall" element={<><Emergencycall /><Footer/></>} />
       <Route path  ="/registration" element={<><Registeration /></>} />
+      <Route path  ="/login" element={<><Login /></>} />
     </Routes>
     
   </BrowserRouter>

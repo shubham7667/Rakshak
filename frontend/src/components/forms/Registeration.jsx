@@ -27,7 +27,7 @@ const OnSubmit= async (data)=>{
     if (response.ok){
       const result = await response.json()
       console.log('succesfull submission from frontend',result)
-      navigate('/login')
+      // navigate('/login')
     }
     else{
       const result = await response.json()
@@ -50,7 +50,7 @@ const OnSubmit= async (data)=>{
 
       {/* Form Section */}
       <div className="w-1/2 flex justify-start items-center">
-        <form onSubmit={handleSubmit(OnSubmit  )} className="grid grid-cols-2 gap-5 w-full max-w-[600px]">
+        <form onSubmit={handleSubmit(OnSubmit)} className="grid grid-cols-2 gap-5 w-full max-w-[600px]">
           {/* Name */}
           <div className="col-span-2">
             <input
@@ -158,7 +158,7 @@ const OnSubmit= async (data)=>{
           )}
 
           {/* Submit Button (Optional) */}
-          <button type="submit" className="col-span-2 mt-4 bg-teal-600 hover:bg-teal-700 px-5 py-3 rounded-md text-white font-semibold " >
+          <button type="Submit" className="col-span-2 mt-4 bg-teal-600 hover:bg-teal-700 px-5 py-3 rounded-md text-white font-semibold " >
           {loading ? 'Registering' : 'Register'}
           </button>
         </form>
