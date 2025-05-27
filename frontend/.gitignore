@@ -27,4 +27,4 @@ pulblic/
 package-lock.json   
 package.json
 .env
-
+vitest.config.js
