@@ -26,5 +26,5 @@ node_modules/
 pulblic/
 package-lock.json   
 package.json
-
+.env
 
