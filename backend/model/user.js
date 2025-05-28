@@ -30,6 +30,9 @@ const userSchema = new mongoose.Schema({
     gender: { // <-- Add this
         type: String,
         // required: true
+    },
+    avtar:{
+        type:String
     }
 });
 

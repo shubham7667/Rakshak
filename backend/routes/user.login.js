@@ -11,13 +11,13 @@ route.post('/loginUser',async(req,res)=>{
 
    // google sigin do not require any password authentication 
 
-   const {email,name}= req.body
+   const {email,name,avtar}= req.body
    console.log(email);
    console.log(name);
    const existingUser = await users.findOne({email})
    if (!existingUser)
    {
-      const createUser = await users.create({username:name,email})
+      const createUser = await users.create({username:name,email,avtar})
     console.log('successfully created new user')
     
    }
