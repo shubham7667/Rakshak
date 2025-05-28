@@ -1,6 +1,4 @@
 import { createRoot } from 'react-dom/client'
-
-
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import Nav from './components/Home/Nav';
@@ -17,31 +15,37 @@ import CrimeRecord from './components/featurePages/crimeRecord.jsx';
 import Emergencycall from './components/featurePages/Emergencycall.jsx';
 import Registeration from './components/forms/Registeration.jsx';
 import Login from './components/forms/login.jsx'
+import UserDash from './components/Dashboard/UserDash.jsx';
+import News from './components/Dashboard/news.jsx';
+import CrimeDash from './components/Dashboard/crimeDash.jsx';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter >
-  
+
     <Routes>
       <Route path="/" element={
         <>
-           <Nav />
-          <Hero    /> 
+          <Nav />
+          <Hero />
           <Services />
           <Quicklinks />
-           <DetailedFeatures />
+          <DetailedFeatures />
           <Faq />
-    <RegisterFir />
-    <Footer />
+          <RegisterFir />
+          <Footer />
+          {/* <CrimeDash /> */}
+
         </>
       } />
-      <Route path="/onlinefir" element={<Onlinefir />} /> 
-      <Route path  ="/crimerecord" element={<CrimeRecord />} />
-      <Route path  ="/emergencycall" element={<><Emergencycall /><Footer/></>} />
-      <Route path  ="/registration" element={<><Registeration /></>} />
-      <Route path  ="/login" element={<><Login /></>} />
+      <Route path="/onlinefir" element={<Onlinefir />} />
+      <Route path="/crimerecord" element={<CrimeRecord />} />
+      <Route path="/emergencycall" element={<><Emergencycall /><Footer /></>} />
+      <Route path="/registration" element={<><Registeration /></>} />
+      <Route path="/login" element={<><Login /></>} />
+      <Route path="/dashboard" element={<UserDash />} />
     </Routes>
-    
+
   </BrowserRouter>
 );

@@ -3,11 +3,12 @@ import loginbanner from '../../assets/loginbanner.svg';
 import { useForm } from 'react-hook-form';
 import { auth, provider } from '../firebase/GoogleSignin';
 import { signInWithPopup } from 'firebase/auth';
-
+import { useNavigate } from 'react-router-dom';
 
 // import { FcGoogle } from "react-icons/fc";
 import { FaGoogle } from "react-icons/fa";
 const Login = () => {
+    const navigate = useNavigate();
     const {
         register,
         handleSubmit,
@@ -25,6 +26,15 @@ const Login = () => {
             // console.log('Google sign-in response:', response.user);
             const data = response.user;
              console.log("google user",data)
+
+             //storing data in my localstorage 
+             localStorage.setItem('user', JSON.stringify({
+                    email:data.email,
+                    name:data.displayName,
+                    avtar:data.photoURL
+                }))
+
+
             const userData = await fetch('http://localhost:3000/loginUser', {
                 method: 'POST',
                 headers: {
@@ -33,14 +43,15 @@ const Login = () => {
                 credentials:'include',
                 body: JSON.stringify({
                     email:data.email,
-                    name:data.displayName
+                    name:data.displayName,
+                    avtar:data.photoURL
                 })
             });
 
             if(userData.ok){
                 const result = await userData.json()
                 console.log('data from google submitted succesfully to the backend',result)
-
+               navigate('/dashboard')
             } 
             else{
                 const result = await userData.json()
