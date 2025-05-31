@@ -2,9 +2,40 @@ import React from 'react'
 import registerfir from '../../assets/registerfir.avif'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
-import { useEffect } from 'react'
-
+import { useEffect ,useState} from 'react'
+import { useNavigate } from 'react-router-dom'
 const RegisterFir = () => {
+
+  const navigate  = useNavigate()
+const[isLoggedIn,setIsLoggedIn]=useState(false)
+ useEffect(() => {
+  const checkLogin = async () => {
+            try {
+                const LoggedIn = await fetch('http://localhost:3000/verify', {
+                    credentials: 'include'
+                });
+                if (LoggedIn.ok) {
+                    setIsLoggedIn(true);
+                } else {
+                    setIsLoggedIn(false);
+                }
+            } catch (err) {
+                setIsLoggedIn(false);
+                console.error(err);
+            }
+        };
+        checkLogin();
+    }, []);
+
+
+
+
+
+
+
+
+
+
   useEffect(()=>{
               AOS.init(
                   {
@@ -25,7 +56,7 @@ const RegisterFir = () => {
             <p>Quickly file reports and get support.</p>
               <div className="btn  flex gap-10 ">
 
-            <button className='bg-lime-300 px-5 py-3 rounded-md transition-all duration-400 hover:scale-105 hover:bg-lime-200'> Register FIR</button>
+            <button className='bg-lime-300 px-5 py-3 rounded-md transition-all duration-400 hover:scale-105 hover:bg-lime-200'onClick={()=>{isLoggedIn?navigate('/onlinefir'):navigate('/login')}}> Register FIR</button>
             <button className='border-[1px] border-black  px-5 py-3 rounded-md transition-full duration-400 hover:scale-105'>Call Police</button>
         </div>
         </div>

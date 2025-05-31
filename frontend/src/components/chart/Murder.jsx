@@ -11,7 +11,8 @@ import {
   CategoryScale,
   LinearScale,
 } from 'chart.js';
-
+import Aos from 'aos';
+import 'aos/dist/aos.css'
 ChartJS.register(
   ArcElement,
   Tooltip,
@@ -24,6 +25,12 @@ ChartJS.register(
 );
 
 const Murder = () => {
+      useEffect(()=>{
+      Aos.init({
+        duration:2000,
+        once:false
+      })
+    },[])
   const [chartData, setChartData] = useState({
     labels: [],
     datasets: [
@@ -103,7 +110,7 @@ const Murder = () => {
       legend: {
         position: 'right',
         labels: {
-          color: '#374151',
+          color: 'white',
           font: { size: 14, family: 'Inter, sans-serif' }
         }
       },
@@ -138,16 +145,15 @@ const Murder = () => {
   }
 
   return (
-    <div className="min-h-auto flex items-start justify-between ml-10 py-10">
-      <div className="bg-white rounded-3xl shadow-2xl p-8 max-w-4xl w-150 h-100 flex flex-col items-center gap-8 border border-blue-100">
-        <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500 mb-2 text-center">
-            
-        </h2>
-        <p className="text-gray-500 text-center mb-4">
+
+    <div className="min-h-auto w-full flex items-start justify-center py-10">
+      <div className="bg-black  rounded-3xl shadow-2xl p-8 w-full max-w-7xl flex flex-col items-center gap-8 border border-blue-100">
+       
+        <p className="text-zinc-300 text-center mb-4">
           Head-wise distribution of reported cases in India. Data from <span className="font-semibold text-blue-600">data.gov.in</span>
         </p>
         <div className="w-full border-b border-blue-100 mb-4"></div>
-        <div style={{ height: '100%', width: '100%' }} className="flex items-center justify-center">
+        <div style={{ height: '500px', width: '100%' }} className="flex items-center justify-center">
           <Doughnut data={chartData} options={chartOptions} />
         </div>
       </div>

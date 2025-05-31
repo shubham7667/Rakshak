@@ -1,56 +1,113 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import '../../App.css'
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import '../../App.css';
 import { FaArrowRight } from "react-icons/fa";
-import AOS from 'aos'
-import 'aos/dist/aos.css'
 import { IoMdArrowDropdown } from "react-icons/io";
 import FeatureDrop from '../Dropdowns/features.jsx';
-import { useNavigate } from 'react-router-dom';
-import logo from '../../assets/logo.png'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import logo from '../../assets/logo.png';
+
 const Nav = () => {
-    
-      const nav =useNavigate()
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isDisplay, setIsDisplay] = useState(false);
-    const handleOnclick = () => setIsDisplay(!isDisplay);
-    const handleCloseDropdown = () => setIsDisplay(false);
-   
-    useEffect(()=>{
-        AOS.init()
-    })
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const checkLogin = async () => {
+            try {
+                const res = await fetch('http://localhost:3000/verify', { credentials: 'include' });
+                setIsLoggedIn(res.ok);
+            } catch (err) {
+                console.error(err);
+                setIsLoggedIn(false);
+            }
+        };
+        checkLogin();
+    }, []);
+
+    useEffect(() => {
+        AOS.init();
+    }, []);
+
+    const toggleDropdown = () => setIsDisplay(!isDisplay);
+    const closeDropdown = () => setIsDisplay(false);
+
     return (
-        <div >
-            <nav className='bg-[#9ACD32] py-4 px-5 flex justify-start   items-center' >
-                <div className="logo flex justify-start "><Link to='/'><img src={logo} alt="" className='h-20 w-25' /></Link></div>
+        <div className="w-full shadow-md">
+            <nav className="bg-[#9ACD32] py-4 px-5 flex flex-wrap justify-between items-center">
+                {/* Logo */}
+                <div className="flex items-center">
+                    <Link to="/">
+                        <img src={logo} alt="Logo" className="h-16 w-auto" />
+                    </Link>
+                </div>
 
-                <ul data-aos='fade-down' data-aos-duration='2000' className='list-none  flex gap-10  justify-center w-280 font-semibold  '>
-                    <div onClick={handleOnclick} className="listItems relative text-zinc-600 px-5 py-3 hover:bg-[#B3DA65] hover:text-white rounded-xl trainsition-full duration-400 " > <li className=''><Link className='flex justify-center items-center gap-2 '>Features < IoMdArrowDropdown /></Link> </li>
-                    </div>
-        
-
-                    <div className="listItems text-zinc-600 px-5 py-3 hover:bg-[#B3DA65] hover:text-white rounded-xl trainsition-full duration-400 "> <li className=''><Link>About Us</Link> </li></div>
-
-                    <div className="listItems text-zinc-600 px-5 py-3 hover:bg-[#B3DA65] hover:text-white rounded-xl trainsition-full duration-400"> <li className=''><Link>News</Link> </li></div>
-
-                    <div className="listItems text-zinc-600  px-5 py-3 hover:bg-[#B3DA65] hover:text-white rounded-xl trainsition-full duration-400"> <li className=''><Link>Help</Link> </li></div>
-
-
+                {/* Nav Links */}
+                <ul 
+                    data-aos="fade-down" 
+                    data-aos-duration="2000" 
+                    className="hidden md:flex list-none gap-6 font-semibold text-zinc-600"
+                >
+                    <li 
+                        className="relative px-4 py-2 hover:bg-[#B3DA65] hover:text-white rounded-xl cursor-pointer"
+                        onClick={toggleDropdown}
+                    >
+                        <div className="flex items-center gap-1">
+                            Features <IoMdArrowDropdown />
+                        </div>
+                    </li>
+                    <li className="px-4 py-2 hover:bg-[#B3DA65] hover:text-white rounded-xl">
+                        <Link to="#">About Us</Link>
+                    </li>
+                    <li className="px-4 py-2 hover:bg-[#B3DA65] hover:text-white rounded-xl">
+                        <Link to="#">News</Link>
+                    </li>
+                    <li className="px-4 py-2 hover:bg-[#B3DA65] hover:text-white rounded-xl">
+                        <Link to="#">Help</Link>
+                    </li>
                 </ul>
-                <div data-aos='fade-down' data-aos-duration='2000' className="btn flex gap-10">
 
-                    <button className='border-[1px] border-black px-5 py-3 rounded-md hover:border[5px] hover:scale-105 duration-400 hover:cursor-pointer' onClick={()=>{nav('/login')}}>Login</button>
-
-                    <button className='flex justify-center  items-center gap-5  px-5 py-3 text-white font-fine rounded-md bg-black hover:scale-105 duration-400 hover:cursor-pointer' onClick={()=>{nav('/registration')}}>Sign Up <FaArrowRight /></button>
-
+                {/* Buttons */}
+                <div 
+                    data-aos="fade-down" 
+                    data-aos-duration="2000" 
+                    className="flex gap-3 mt-4 md:mt-0"
+                >
+                    {isLoggedIn ? (
+                        <button 
+                            onClick={() => navigate('/logout')} 
+                            className="bg-black text-white px-5 py-2 rounded-md hover:scale-105 transition duration-300"
+                        >
+                            Log Out
+                        </button>
+                    ) : (
+                        <>
+                            <button 
+                                onClick={() => navigate('/login')} 
+                                className="border border-black px-5 py-2 rounded-md hover:scale-105 transition duration-300"
+                            >
+                                Login
+                            </button>
+                            <button 
+                                onClick={() => navigate('/registration')} 
+                                className="bg-black text-white flex items-center gap-2 px-5 py-2 rounded-md hover:scale-105 transition duration-300"
+                            >
+                                Sign Up <FaArrowRight />
+                            </button>
+                        </>
+                    )}
                 </div>
             </nav>
-            <div className="dropbody w-full flex justify-center items-center">
-                {isDisplay && <FeatureDrop isOpen={isDisplay} onClose={handleCloseDropdown} />}
-            </div>
 
+            {/* Dropdown */}
+            {isDisplay && (
+                <div className="flex justify-center">
+                    <FeatureDrop isOpen={isDisplay} onClose={closeDropdown} />
+                </div>
+            )}
         </div>
-    )
-}
+    );
+};
 
-export default Nav
+export default Nav;

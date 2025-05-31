@@ -16,8 +16,8 @@ import Emergencycall from './components/featurePages/Emergencycall.jsx';
 import Registeration from './components/forms/Registeration.jsx';
 import Login from './components/forms/login.jsx'
 import UserDash from './components/Dashboard/UserDash.jsx';
-import News from './components/Dashboard/news.jsx';
-import CrimeDash from './components/Dashboard/crimeDash.jsx';
+import Recorder from './components/video/Recorder.jsx';
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -35,7 +35,8 @@ root.render(
           <Faq />
           <RegisterFir />
           <Footer />
-          {/* <CrimeDash /> */}
+        
+
 
         </>
       } />
@@ -45,6 +46,7 @@ root.render(
       <Route path="/registration" element={<><Registeration /></>} />
       <Route path="/login" element={<><Login /></>} />
       <Route path="/dashboard" element={<UserDash />} />
+      <Route path="/recorder" element={<Recorder />} />
     </Routes>
 
   </BrowserRouter>

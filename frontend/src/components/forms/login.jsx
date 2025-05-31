@@ -1,25 +1,30 @@
-import React from 'react';
+import {React,useState,createContext} from 'react';
 import loginbanner from '../../assets/loginbanner.svg';
 import { useForm } from 'react-hook-form';
 import { auth, provider } from '../firebase/GoogleSignin';
 import { signInWithPopup } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
+
 // import { FcGoogle } from "react-icons/fc";
 import { FaGoogle } from "react-icons/fa";
+
 const Login = () => {
-    const navigate = useNavigate();
+  const navigate =useNavigate()
     const {
         register,
         handleSubmit,
         formState: { errors }
     } = useForm();
-
+//  for traditional Login 
     const onSubmit = (data) => {
         console.log('Form submitted with data:', data);
         // Add your login logic here if needed
     };
+
+// for google login
     const handleClick = async () => {
+
         // getting the name ,email,photoUrl , from the google via firebase and sending this data to backend
         try {
             const response = await signInWithPopup(auth, provider);
@@ -51,6 +56,9 @@ const Login = () => {
             if(userData.ok){
                 const result = await userData.json()
                 console.log('data from google submitted succesfully to the backend',result)
+        
+               
+              
                navigate('/dashboard')
             } 
             else{
@@ -65,6 +73,9 @@ const Login = () => {
 
     return (
         <div className='flex justify-center items-center w-screen h-screen bg-[#92ddd1]'>
+
+            {/* Passing the value of isLoggedIn to other components */}
+           
             <div className="container h-120 w-180 bg-[#c4e2de] flex justify-center items-center rounded-lg">
                 <div>
                     <img src={loginbanner} alt="Unable to load image" className='w-90 h-80' />

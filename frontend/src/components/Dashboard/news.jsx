@@ -32,9 +32,9 @@ const News = () => {
 
   return (
     <>
-    <div className='h-100 w-150 flex gap-5 flex-col rounded-3xl justify-center items-center shadow-2xl border-[1px] border-zinc-300 scroll-x-0' >
+    <div className='h-100 w-auto flex gap-5 flex-col rounded-3xl justify-center items-center shadow-2xl border-[1px] border-zinc-300 scroll-x-0' >
       
-        {isLoading?<Lottie animationData={loading} loop={true} style={{width:200 ,height:400}}/>:<div className='h-100 w-150 flex gap-5 flex-col rounded-3xl items-center overflow-auto shadow-2xl border-[1px] border-zinc-300'>
+        {isLoading?<Lottie animationData={loading} loop={true} style={{width:200 ,height:400}}/>:<div className='h-100 w-full flex gap-5 flex-col rounded-3xl items-center overflow-auto shadow-2xl border-[1px] border-zinc-300'>
       <div className="w-full sticky top-0 flex flex-col items-center z-10">
         <div className="heading bg-black text-white w-full  overflow-hidden">
           <h1 className='font-bold text-3xl text-center p-3'>
@@ -42,8 +42,8 @@ const News = () => {
           </h1>
         </div>
       </div>
-      <div className="news h-100 w-100">
-        <div className="newsBody mt-15 ">
+      <div className="news h-100 w-full">
+        <div className="newsBody  ">
 
           {newsArr.map((item, idx) => (
             <div key={idx} className="rounded-xl p-2 bg-white border-red-300 font-bold text-zinc-600 hover:bg-zinc-300">

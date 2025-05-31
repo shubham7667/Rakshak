@@ -1,9 +1,37 @@
 import React from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Hero = () => {
+  const navigate  = useNavigate()
+const[isLoggedIn,setIsLoggedIn]=useState(false)
+ useEffect(() => {
+  const checkLogin = async () => {
+            try {
+                const LoggedIn = await fetch('http://localhost:3000/verify', {
+                    credentials: 'include'
+                });
+                if (LoggedIn.ok) {
+                    setIsLoggedIn(true);
+                } else {
+                    setIsLoggedIn(false);
+                }
+            } catch (err) {
+                setIsLoggedIn(false);
+                console.error(err);
+            }
+        };
+        checkLogin();
+    }, []);
+
+
+
+
+
+
+
   useEffect(() => {
     AOS.init({
       duration: 2000,
@@ -25,7 +53,7 @@ const Hero = () => {
         Explore our features: file FIRs, report crimes, and connect with police instantly.
       </p>
       <div data-aos='zoom-in' className="btn flex flex-col sm:flex-row gap-5 sm:gap-10 mt-5"> {/* Made buttons responsive */}
-        <button className='bg-black px-6 py-3 text-white font-medium rounded-md hover:bg-gray-900 hover:scale-105 duration-300'>Get Started</button>
+        <button className='bg-black px-6 py-3 text-white font-medium rounded-md hover:bg-gray-900 hover:scale-105 duration-300' onClick={()=>{isLoggedIn?navigate('/dashboard'):navigate('/login')}}>Get Started</button>
         <button className='border-[1px] border-black px-6 py-3 rounded-md hover:border-black hover:scale-105 duration-300'>Learn More</button>
       </div>
     </div>
