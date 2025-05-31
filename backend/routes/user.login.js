@@ -3,6 +3,8 @@ const express = require('express')
 const route = express.Router()
 const users  = require('../model/user');
 const jwt = require('jsonwebtoken');
+const verify = require('./verify.js')
+
 route.post('/loginUser',async(req,res)=>{
 
    // users who want to login with their google id .
@@ -17,6 +19,7 @@ route.post('/loginUser',async(req,res)=>{
    const existingUser = await users.findOne({email})
    if (!existingUser)
    {
+      console.log(avtar)
       const createUser = await users.create({username:name,email,avtar})
     console.log('successfully created new user')
     

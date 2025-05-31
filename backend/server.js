@@ -6,6 +6,7 @@ const cors = require('cors')
 const cookieParser = require('cookie-parser') // <-- Add this
 const loginUser = require('./routes/user.login.js')
 const userRegister = require('./routes/user.register.js')
+const verify = require('./routes/verify.js')
 
 app.use(cors({
     credentials: true,
@@ -15,13 +16,13 @@ app.use(express.json())
 app.use(cookieParser()) // <-- Add this
 
 app.get('/', (req, res) => {
-    const token = req.cookies.login_token; // <-- Now you can read the cookie
-    console.log(token)
+    
     res.send('hello from expresss server')
 })
 
 app.use('/', userRegister)
 app.use('/', loginUser)
+app.use('/', verify)
 
 app.listen(3000, () => {
     console.log('app is listening to port number 3000')
