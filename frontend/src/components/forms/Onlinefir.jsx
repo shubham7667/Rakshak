@@ -1,9 +1,32 @@
 import React from 'react'
 import { useForm } from "react-hook-form";
-
+import { useNavigate } from 'react-router-dom';
 
 const Onlinefir = () => {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const navigate= useNavigate()
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const onSubmit = async(data)=>{
+ try {
+     const response =await fetch('http://localhost:3000/onlinefir/fir',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify(data),
+      credentials:'include'
+    })
+    if(response.ok){
+      const result = await response.json()
+      console.log('form submitted succesfully to the server from frontend',result)
+      navigate('/dashboard')
+    }
+    else{
+      console.log('there is some error message from frontend')
+    }
+ } catch (error) {
+  console.error('error message catch block',error)
+ }
+  }
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden">
@@ -18,6 +41,7 @@ const Onlinefir = () => {
 <form
   method='post'
   onReset={() => reset()}
+  onSubmit={handleSubmit(onSubmit)}
   className='relative w-full max-w-4xl p-8 rounded-2xl bg-white/10 backdrop-blur-xl shadow-xl border border-white/30'
 >
   {/* Blur Background Layer */}

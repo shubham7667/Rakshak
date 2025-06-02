@@ -17,8 +17,8 @@ import Registeration from './components/forms/Registeration.jsx';
 import Login from './components/forms/login.jsx'
 import UserDash from './components/Dashboard/UserDash.jsx';
 import Recorder from './components/video/Recorder.jsx';
-
-
+import Profile from './components/dashboard sidebar/Profile.jsx';
+import UserFir from './components/dashboard sidebar/yourFir.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -47,6 +47,8 @@ root.render(
       <Route path="/login" element={<><Login /></>} />
       <Route path="/dashboard" element={<UserDash />} />
       <Route path="/recorder" element={<Recorder />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/myfir" element={<UserFir />} />
     </Routes>
 
   </BrowserRouter>

@@ -8,12 +8,19 @@ import Quicklinks from '../Home/Quicklinks.jsx';
 import Aos from 'aos';
 import 'aos/dist/aos.css'
 import Footer from '../Home/Footer.jsx';
-
+import { GoSidebarCollapse } from "react-icons/go";
+import { GoSidebarExpand } from "react-icons/go";
+import Sidebar from './sidebar.jsx';
 
 
 
 const UserDash = () => {
- 
+ const [isClicked,setIsClicked]=useState(false)
+const handleOnClick =()=>{
+
+    setIsClicked(!isClicked)
+  
+}
 
   const user = JSON.parse(localStorage.getItem('user'))
   useEffect(() => {
@@ -24,10 +31,12 @@ const UserDash = () => {
       }
     )
   }, [])
-  console.log(user.avtar)
+
+
   return (
-    <div className='bg-white w-auto h-screen '>
-      <nav data-aos='zoom-in' className='flex justify-between  items-center'>
+    <div className='bg-white w-auto h-screen  mt-20  '>
+      <nav data-aos='zoom-in' className='fixed top-0 z-30 bg-white  w-full flex justify-between  items-center'>
+      <button className='p-5' onClick={handleOnClick} >{isClicked?<GoSidebarCollapse size={20}/>:<GoSidebarExpand size={20}/>} </button>
         <div className="logo w-1/2">
           <img src={logo} alt="" className="w-20 h-auto" />
         </div>
@@ -39,10 +48,16 @@ const UserDash = () => {
           <img src={user.avtar} alt="User Avatar" className="w-10 h-10 rounded-full" />
         </div>
       </nav>
-      <div className="content grid grid-cols-1 justify-center items-center gap-20">
+ {isClicked && <Sidebar/>}
+
+      <div
+  className={`  content grid grid-cols-1 justify-center items-center gap-20 transition-all duration-300  ${
+    isClicked ? 'ml-70' : ''
+  } `}
+>
 
 
-        <div data-aos='zoom-in' className="article">
+        <div data-aos='zoom-in' className="article p-5 ">
           <h1 data-aos='zoom-in' className='font-bold text-xl'> Crime in Today’s World: A Growing Concern</h1>
 
           Crime has been an integral challenge to human societies since the dawn of civilization. However, in today’s rapidly evolving world, the nature, scope, and impact of crime have changed dramatically. The digital revolution, urbanization, social inequalities, and geopolitical tensions have all contributed to new forms of criminal behavior, making crime prevention and law enforcement more complex than ever.
