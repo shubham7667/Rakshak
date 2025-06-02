@@ -1,9 +1,9 @@
 require('dotenv').config();
 const express = require('express')
 const route = express.Router()
-const users  = require('../model/user');
+const users  = require('../model/user.js');
 const jwt = require('jsonwebtoken');
-const verify = require('./verify.js')
+const verify = require('../middleware/verify.js')
 
 route.post('/loginUser',async(req,res)=>{
 
